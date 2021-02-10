@@ -1,3 +1,6 @@
 # .gitignore
 
 *~
+\#*
+.#*
+cmd/search/search
