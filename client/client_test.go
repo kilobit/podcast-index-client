@@ -7,6 +7,7 @@ import _ "errors"
 
 import "context"
 import "io"
+import "time"
 import "os"
 import "net/url"
 import "net/http"
@@ -125,4 +126,16 @@ func TestClientSearchMock(t *testing.T) {
 	assert.Ok(t, err, result, pic)
 
 	//t.Log(result)
+
+	feeds := result.Feeds()
+	assert.Expect(t, 1, len(feeds), feeds)
+
+	feed := feeds[0]
+
+	assert.Expect(t, 75075, feed.ID(), feed)
+	assert.Expect(t, "Batman University", feed.Title(), feed)
+	assert.Expect(t, "Tony Sindelar", feed.Author(), feed)
+	assert.Expect(t, time.Unix(1610854330, 0), feed.LastUpdated(), feed)
+	assert.Expect(t, false, feed.Locked(), feed)
+	assert.Expect(t, false, feed.Dead(), feed)
 }

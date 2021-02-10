@@ -27,7 +27,11 @@ func main() {
 		panic(err)
 	}
 
-	for _, feed := range result.Feeds() {
-		fmt.Println(feed.GetString("title"))
+	fmt.Printf("\n%d results returned for query, '%s'.\n\n", result.Count(), result.Query())
+
+	for i, feed := range result.Feeds() {
+		fmt.Printf("%2.d. %s\n", i+1, feed.Title())
 	}
+
+	fmt.Println()
 }

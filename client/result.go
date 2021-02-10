@@ -6,7 +6,6 @@ import _ "fmt"
 import _ "errors"
 
 import "encoding/json"
-import "strconv"
 
 import . "kilobit.ca/go/objected"
 
@@ -38,13 +37,12 @@ func (r Result) Query() string {
 
 func (r Result) Count() int {
 
-	str := r.GetString("count")
-	i, err := strconv.Atoi(str)
+	n, err := r.GetNumber("count")
 	if err != nil {
-		i = -1
+		n = -1
 	}
 
-	return i
+	return int(n)
 }
 
 func (r Result) Feeds() []*Feed {
@@ -65,10 +63,6 @@ func (r Result) Feeds() []*Feed {
 	}
 
 	return feeds
-}
-
-type Feed struct {
-	Object
 }
 
 func ToString(obj interface{}) string {

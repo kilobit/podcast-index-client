@@ -1,5 +1,7 @@
 /* Copyright 2021 Kilobit Labs Inc. */
 
+// A client for using the Podcast Index API in Golang.
+//
 package client
 
 import "fmt"
