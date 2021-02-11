@@ -24,7 +24,7 @@ func TestClientTest(t *testing.T) {
 
 func TestClientSearchLive(t *testing.T) {
 
-	t.Skip("This test requires remote resources and should normally be skipped.")
+	//t.Skip("This test requires remote resources and should normally be skipped.")
 
 	key := os.Getenv("PODCAST_INDEX_API_KEY")
 	secret := os.Getenv("PODCAST_INDEX_API_SECRET")
