@@ -89,3 +89,67 @@ func TestResult(t *testing.T) {
 	assert.Expect(t, "Tony Sindelar", authors)
 	//t.Log(authors)
 }
+
+// From the developer documentation on podcastindex.org.
+var testBodyWithFeed = `{
+    "status": "true",
+    "query": {
+        "url": "https:\/\/feeds.theincomparable.com\/batmanuniversity"
+    },
+    "feed": {
+        "id": 75075,
+        "title": "Batman University",
+        "url": "https:\/\/feeds.theincomparable.com\/batmanuniversity",
+        "originalUrl": "https:\/\/feeds.theincomparable.com\/batmanuniversity",
+        "link": "https:\/\/www.theincomparable.com\/batmanuniversity\/",
+        "description": "Batman University is a seasonal podcast about you know who. It began with an analysis of episodes of \u201cBatman: The Animated Series\u201d but has now expanded to cover other series, movies, and media. Your professor is Tony Sindelar.",
+        "author": "Tony Sindelar",
+        "ownerName": "The Incomparable",
+        "image": "https:\/\/www.theincomparable.com\/imgs\/logos\/logo-batmanuniversity-3x.jpg?cache-buster=2019-06-11",
+        "artwork": "https:\/\/www.theincomparable.com\/imgs\/logos\/logo-batmanuniversity-3x.jpg?cache-buster=2019-06-11",
+        "lastUpdateTime": 1610854330,
+        "lastCrawlTime": 1612844700,
+        "lastParseTime": 1610854342,
+        "lastGoodHttpStatusTime": 1612844700,
+        "lastHttpStatus": 200,
+        "contentType": "application\/rss+xml",
+        "itunesId": 1441923632,
+        "generator": null,
+        "language": "en-us",
+        "type": 0,
+        "dead": 0,
+        "chash": "ad651c60eaaf3344595c0dd0bd787993",
+        "episodeCount": 19,
+        "crawlErrors": 0,
+        "parseErrors": 0,
+        "categories": {
+            "104": "Tv",
+            "105": "Film",
+            "107": "Reviews"
+        },
+        "locked": 0,
+        "imageUrlHash": 1639321931
+    },
+    "description": "Found matching feed."
+}`
+
+func TestResultFeed(t *testing.T) {
+
+	result := client.Result{}
+	err := json.Unmarshal([]byte(testBodyWithFeed), &result)
+	assert.Ok(t, err, result)
+
+	//t.Log(result.Keys())
+	//t.Log(result.Description())
+
+	//fs, ok := result.Get("feeds")
+	//t.Log(fs, ok)
+
+	feed := result.Feed()
+	assert.Expect(t, false, feed == nil, result)
+	//t.Log(feed.Keys())
+
+	assert.Expect(t, "Tony Sindelar", feed.Author())
+	assert.Expect(t, "Batman University", feed.Title())
+	//t.Log(authors)
+}

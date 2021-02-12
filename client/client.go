@@ -264,7 +264,7 @@ func (pic *PodcastIndexClient) RecentSoundBites(ctx context.Context, max int) (R
 }
 
 type Param struct {
-	key string
+	key   string
 	value string
 }
 
@@ -272,7 +272,7 @@ func NewParam(key, value string) *Param {
 	return &Param{key, value}
 }
 
-func (pic *PodcastIndexClient) CallReadAPI(ctx context.Context, method, entity, selector string, params... *Param) (Result, error){
+func (pic *PodcastIndexClient) CallReadAPI(ctx context.Context, method, entity, selector string, params ...*Param) (Result, error) {
 
 	path := path.Join(pic.root, pic.version, entity, selector)
 

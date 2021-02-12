@@ -30,9 +30,11 @@ func (r Result) Description() string {
 	return r.GetString("description")
 }
 
-func (r Result) Query() string {
+func (r Result) Query() Value {
 
-	return r.GetString("query")
+	val, _ := r.Get("query")
+
+	return val
 }
 
 func (r Result) Count() int {
@@ -43,6 +45,21 @@ func (r Result) Count() int {
 	}
 
 	return int(n)
+}
+
+func (r Result) Feed() *Feed {
+
+	var feed *Feed = nil
+
+	val, ok := r.Get("feed")
+	if ok {
+		obj, ok := val.(map[string]interface{})
+		if ok {
+			feed = &Feed{obj}
+		}
+	}
+
+	return feed
 }
 
 func (r Result) Feeds() []*Feed {
