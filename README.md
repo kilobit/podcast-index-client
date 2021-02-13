@@ -39,10 +39,11 @@ func main() {
 Features
 --------
 
-- Currently implements the search/byterm endpoint.
+- Full API support with convenience methods for the read only API.
+- Call any endpoint via the CallAPI method.
 - Pass API keys etc via Context objects.
 - Parses Result and Feed responses.
-- Includes a simple search cmd.
+- Convenience methods for most result, feed and item members.
 
 Installation
 ------------
