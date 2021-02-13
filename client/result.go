@@ -82,6 +82,26 @@ func (r Result) Feeds() []*Feed {
 	return feeds
 }
 
+func (r Result) Items() []*Item {
+
+	items := []*Item{}
+
+	objs, ok := r.Get("items")
+	if ok {
+		vals := ToValues(objs)
+		for _, val := range vals {
+
+			obj, ok := val.(map[string]interface{})
+			item := &Item{obj}
+			if ok {
+				items = append(items, item)
+			}
+		}
+	}
+
+	return items
+}
+
 func ToString(obj interface{}) string {
 	str, _ := obj.(string)
 	return str
