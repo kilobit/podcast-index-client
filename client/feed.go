@@ -28,7 +28,7 @@ func (f *Feed) Title() string {
 	return f.GetString("title")
 }
 
-func (f *Feed) url() string {
+func (f *Feed) URL() string {
 	return f.GetString("url")
 }
 
